@@ -19,17 +19,27 @@ fi
 
 echo "running entrypoint command(s)"
 
-sh -c "$INPUT_COMMAND" 2>&1 | tee response.txt
+sh -c "$INPUT_COMMAND" > >(tee -a stdout.log) 2> >(tee -a stderr.log >&2)
 
-response=`cat response.txt`
 
-echo "response<<EOF" >> $GITHUB_ENV
-echo "$response" >> $GITHUB_ENV
-echo "EOF" >> $GITHUB_ENV
+if [ -s stderr.log ]; then
+  errors=`cat stderr.log`
+  echo "errors<<EOF" >> $GITHUB_ENV
+  echo "$errors" >> $GITHUB_ENV
+  echo "EOF" >> $GITHUB_ENV
+  exit 2
+fi
+
+if [ -s stdout.log ]; then
+  response=`cat stdout.log`
+  echo "response<<EOF" >> $GITHUB_ENV
+  echo "$response" >> $GITHUB_ENV
+  echo "EOF" >> $GITHUB_ENV
+fi
 
 #fix multiline output
 # response="${response//'%'/'%25'}"
 # response="${response//$'\n'/'%0A'}"
 # response="${response//$'\r'/'%0D'}"
 
-echo "::set-output name=response::$response"
+#echo "::set-output name=response::$response"
