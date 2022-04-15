@@ -18,10 +18,12 @@ then
 fi
 
 echo "running entrypoint command(s)"
+bash -c "$INPUT_COMMAND" > >(tee -a output.log) 2> >(tee -a output.log >&2)
 
-response=$( bash -c "$INPUT_COMMAND" 2>&1 )
+#response=$( bash -c "$INPUT_COMMAND" 2>&1 )
 commandExitCode=${?}
 
+response=`cat output.log`
 #fix multiline output
 response="${response//'%'/'%25'}"
 response="${response//$'\n'/'%0A'}"
