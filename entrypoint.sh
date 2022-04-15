@@ -20,11 +20,14 @@ fi
 echo "running entrypoint command(s)"
 
 sh -c "$INPUT_COMMAND" 2>&1 | tee response.txt
+sed -i 's/'%'/'%25'/g' response.txt
+sed -i 's/$'\n'/'%0A'/g' response.txt
+sed -i 's/$'\r'/'%0D'/g' response.txt
 response=`cat response.txt`
 
 #fix multiline output
-response="${response//'%'/'%25'}"
-response="${response//$'\n'/'%0A'}"
-response="${response//$'\r'/'%0D'}"
+# response="${response//'%'/'%25'}"
+# response="${response//$'\n'/'%0A'}"
+# response="${response//$'\r'/'%0D'}"
 
 echo "::set-output name=response::$response"
