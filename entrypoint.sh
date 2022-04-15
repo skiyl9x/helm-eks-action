@@ -19,6 +19,7 @@ fi
 
 echo "running entrypoint command(s)"
 
+echo "$INPUT_COMMAND"
 echo $INPUT_COMMAND > run.sh
 chmod +x run.sh
 response=$(./run.sh 2>&1 )
