@@ -21,7 +21,7 @@ echo "running entrypoint command(s)"
 
 # bash -c "$INPUT_COMMAND" 2>&1 | tee -a response.txt
 
-response=$(bash -c " $INPUT_COMMAND" 2>&1)
+response=$(sh -c " $INPUT_COMMAND" 2>&1)
 # response=`cat response.txt`
 
 exit_code=$?
