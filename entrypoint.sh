@@ -27,4 +27,4 @@ response="${response//'%'/'%25'}"
 response="${response//$'\n'/'%0A'}"
 response="${response//$'\r'/'%0D'}"
 echo "::set-output name=response::${response}"
-exit ${ commandExitCode }
+exit ${commandExitCode}
