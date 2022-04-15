@@ -19,7 +19,7 @@ fi
 
 echo "running entrypoint command(s)"
 
-bash -c "$INPUT_COMMAND" > response.txt 2>&1
+sh -c "$INPUT_COMMAND" > response.txt 2>&1
 exit_code=$?
 # response=$(sh -c " $INPUT_COMMAND" 2>&1)
 response=`cat response.txt`
