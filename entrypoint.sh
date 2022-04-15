@@ -19,13 +19,7 @@ fi
 
 echo "running entrypoint command(s)"
 
-echo "$INPUT_COMMAND"
-echo $INPUT_COMMAND > run.sh
-chmod +x run.sh
-response=$(./run.sh 2>&1 )
-
-
-echo "$response"
+response=$(sh -c " $INPUT_COMMAND")
 
 #fix multiline output
 response="${response//'%'/'%25'}"
