@@ -19,11 +19,12 @@ fi
 
 echo "running entrypoint command(s)"
 
-response=$(sh -c " $INPUT_COMMAND")
+sh -c "$INPUT_COMMAND" 2>&1 | tee response.txt
+response=`cat response.txt`
 
 #fix multiline output
-# response="${response//'%'/'%25'}"
-# response="${response//$'\n'/'%0A'}"
-# response="${response//$'\r'/'%0D'}"
+response="${response//'%'/'%25'}"
+response="${response//$'\n'/'%0A'}"
+response="${response//$'\r'/'%0D'}"
 
 echo "::set-output name=response::$response"
