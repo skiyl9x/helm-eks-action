@@ -37,7 +37,7 @@ bash -c "$INPUT_COMMAND" > >(tee -a output.log) 2> >(tee -a output.log >&2)
 #  echo "EOF" >> $GITHUB_ENV
 #fi
 
-response=`cat output.log`
+export response=`cat output.log`
 #fix multiline output
 response="${response//'%'/'%25'}"
 response="${response//$'\n'/'%0A'}"
