@@ -21,6 +21,7 @@ echo "running entrypoint command(s)"
 
 response=$(sh -c " $INPUT_COMMAND 2>&1")
 
+exit_code=$?
 #output result
 echo -e "$response"
 
@@ -30,3 +31,5 @@ response="${response//$'\n'/'%0A'}"
 response="${response//$'\r'/'%0D'}"
 
 echo "::set-output name=response::$response"
+
+exit $exit_code
