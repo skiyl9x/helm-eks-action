@@ -11,7 +11,9 @@ RUN apk add py-pip curl wget ca-certificates git bash jq gcc alpine-sdk && \
     chmod +x /usr/bin/aws-iam-authenticator && \
     wget https://get.helm.sh/helm-v3.8.0-linux-amd64.tar.gz -O - | tar -xzO linux-amd64/helm > /usr/local/bin/helm && \
     chmod +x /usr/local/bin/helm && \
-    apk add terraform
-
+    apk add terraform && \
+    wget https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz && \
+    tar xf kubeval-linux-amd64.tar.gz && \
+    cp kubeval /usr/local/bin
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]:
