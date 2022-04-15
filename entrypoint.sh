@@ -26,7 +26,8 @@ response=`cat response.txt`
 
 
 #output result
-echo -e "$response"
+# echo -e "$response"
+cat response.txt
 
 #fix multiline output
 response="${response//'%'/'%25'}"
