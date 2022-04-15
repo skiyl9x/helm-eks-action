@@ -21,6 +21,9 @@ echo "running entrypoint command(s)"
 
 response=$(sh -c " $INPUT_COMMAND 2>&1")
 
+#output result
+echo -e "$response"
+
 #fix multiline output
 response="${response//'%'/'%25'}"
 response="${response//$'\n'/'%0A'}"
