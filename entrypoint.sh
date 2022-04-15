@@ -19,14 +19,12 @@ fi
 
 echo "running entrypoint command(s)"
 
-sh -c "$INPUT_COMMAND" > response.txt 2>&1
-# response=$(sh -c " $INPUT_COMMAND" 2>&1)
-response=`cat response.txt`
+echo $INPUT_COMMAND > run.sh
+chmod +x run.sh
+response=$(./run.sh 2>&1 )
 
 
-#output result
-# echo -e "$response"
-cat response.txt
+echo "$response"
 
 #fix multiline output
 response="${response//'%'/'%25'}"
