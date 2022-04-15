@@ -26,7 +26,7 @@ response=`cat response.txt`
 
 # exit_code=$?
 #output result
-echo -e "$response"
+# echo -e "$response"
 
 #fix multiline output
 response="${response//'%'/'%25'}"
