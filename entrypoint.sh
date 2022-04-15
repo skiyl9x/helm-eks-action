@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
@@ -19,7 +19,7 @@ fi
 
 echo "running entrypoint command(s)"
 
-sh -c "$INPUT_COMMAND" > >(tee -a stdout.log) 2> >(tee -a stderr.log >&2)
+bash -c "$INPUT_COMMAND" > >(tee -a stdout.log) 2> >(tee -a stderr.log >&2)
 
 
 if [ -s stderr.log ]; then
