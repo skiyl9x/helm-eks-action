@@ -19,7 +19,7 @@ fi
 
 echo "running entrypoint command(s)"
 
-response=$( bash -c "$INPUT_COMMAND" 2>1& )
+response=$( bash -c "$INPUT_COMMAND" 2>&1 )
 commandExitCode=${?}
 
 #fix multiline output
