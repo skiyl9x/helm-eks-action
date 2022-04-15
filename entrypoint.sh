@@ -20,10 +20,12 @@ fi
 echo "running entrypoint command(s)"
 
 sh -c "$INPUT_COMMAND" 2>&1 | tee response.txt
-sed -i 's/'%'/'%25'/g' response.txt
-sed -i 's/$'\n'/'%0A'/g' response.txt
-sed -i 's/$'\r'/'%0D'/g' response.txt
+
 response=`cat response.txt`
+
+echo "response<<EOF" >> $GITHUB_ENV
+echo "$response" >> $GITHUB_ENV
+echo "EOF" >> $GITHUB_ENV
 
 #fix multiline output
 # response="${response//'%'/'%25'}"
