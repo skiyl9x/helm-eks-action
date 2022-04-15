@@ -20,7 +20,6 @@ fi
 echo "running entrypoint command(s)"
 
 sh -c "$INPUT_COMMAND" > response.txt 2>&1
-exit_code=$?
 # response=$(sh -c " $INPUT_COMMAND" 2>&1)
 response=`cat response.txt`
 
@@ -35,5 +34,3 @@ response="${response//$'\n'/'%0A'}"
 response="${response//$'\r'/'%0D'}"
 
 echo "::set-output name=response::$response"
-
-exit $exit_code
